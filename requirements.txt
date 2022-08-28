@@ -1,0 +1,9 @@
+pdfrw
+flask_sqlalchemy
+SQLAlchemy-serializer
+Flask-Sharp
+python-dateutil
+gunicorn
+PyPDF2
+fpdf
+psycopg2-binary
