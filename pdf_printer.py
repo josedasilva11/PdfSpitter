@@ -14,6 +14,7 @@ with open('store_id.txt', 'r') as store:
 
 
 def print_pdf(data):
+    fix_dates(data)
     buf = BytesIO()
     fill_pdf("root_2.pdf", buf, data)
     buf.seek(0)
@@ -48,10 +49,12 @@ def fix_dates(data):
         if key.count('_date') or key.count('date_'):
             if isinstance(data[key], str):
                 try:
-                    data[key] = dateutil.parser.parse(data[key]).strftime("%d-%m-%Y")
-                except:
-                    pass
+                    data[key] = dateutil.parser.parse(data[key]).strftime("%d/%m/%Y")
 
+                except BaseException as b:
+                    print(b)
+            else:
+                data[key] = data[key].strftime("%d/%m/%Y")
 
 def print_three_pdf(data):
     fix_dates(data)
