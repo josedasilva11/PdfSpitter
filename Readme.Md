@@ -44,3 +44,7 @@ Edit database.txt and put the information from Elephant sql in. Everything after
 ![img.png](img.png) (this database has been deleted but am leaving this image for ref)
 
 ![img_2.png](img_2.png)
+
+## Starting it
+
+`server.bat` will run it
