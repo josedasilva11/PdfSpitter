@@ -1,3 +1,3 @@
 cd front_end
-npm install
+call npm install
 npm run build
