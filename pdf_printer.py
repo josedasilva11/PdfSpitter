@@ -23,12 +23,14 @@ def print_pdf(data):
 
 def add_mark(out_file, text):
     pdf = FPDF(format='letter', unit='pt')
+
     pdf.add_page()
     pdf_style = 'B'
 
-    pdf.set_font("Arial", style=pdf_style, size=7)
-    pdf.set_xy(450, 720)
-    pdf.cell(0, 10, txt=text, ln=0)
+
+    pdf.set_font("Arial",   size=7)
+    pdf.set_xy(480, 730)
+    pdf.cell(1, 1, txt=text, ln=0)
     pdf.output(out_file + "_tmp.pdf")
     pdf.close()
 

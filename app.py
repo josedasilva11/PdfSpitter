@@ -17,10 +17,10 @@ app = Flask('applicant', static_url_path='',
             static_folder='static',
             template_folder='templates')
 app.config.update(SECRET_KEY=secrets.token_hex() )
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///applicants.db'
-with open('database.txt') as db:
-    app.config['SQLALCHEMY_DATABASE_URI'] ='postgresql+psycopg2://'  + db.read().strip()
-app.config['SQLALCHEMY_POOL_SIZE'] = 2
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///applicants.db'
+# with open('database.txt') as db:
+#     app.config['SQLALCHEMY_DATABASE_URI'] ='postgresql+psycopg2://'  + db.read().strip()
+# app.config['SQLALCHEMY_POOL_SIZE'] = 2
 login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
 db = SQLAlchemy(app)
