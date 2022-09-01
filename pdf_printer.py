@@ -2,7 +2,8 @@ import os
 from io import BytesIO, StringIO
 
 import dateutil.parser
-from PyPDF2 import PdfReader, PdfWriter
+from PyPDF2 import PdfReader, PdfWriter, PdfFileReader
+from PyPDF2.generic import createStringObject, NameObject
 from flask import send_file
 from fpdf import FPDF
 
@@ -58,35 +59,43 @@ def fix_dates(data):
                 data[key] = data[key].strftime("%d/%m/%Y")
 
 
+def add_suffix(data, param):
+    new_dict = {}
+    for a in data :
+        new_dict[a + param] = data[a]
+
+    return new_dict
+
+
 def print_three_pdf(data):
     fix_dates(data)
     buf = BytesIO()
     data['text_38bfne'] = data['car_license']
+    data['footertext'] = "1. ORIGINAL"
     data['textarea_1deug'] = data['obs']
     data['text_48csyn'] = data['store_prefix'] + str(data['id'])
     pdf_one = f"{data['store_prefix']}{data['client_renter_name']}.{data['id']}_1.pdf"
     with open(pdf_one, 'wb') as outfile:
         fill_pdf("root_2.pdf", outfile, data)
 
-    add_mark(pdf_one, "1. ORIGINAL")
 
+    data['footertext'] = "2. AUTORIDADE"
     pdf_two = f"{data['store_prefix']}{data['client_renter_name']}.{data['id']}_2.pdf"
     with open(pdf_two, 'wb') as outfile:
-        fill_pdf("root_2.pdf", outfile, data)
+        fill_pdf("root_2_page2.pdf", outfile, add_suffix(data,'_page2'))
 
-    add_mark(pdf_two, "2. AUTORIDADE")
-
+    data['footertext'] = "3. CLIENTE"
     pdf_three = f"{data['store_prefix']}{data['client_renter_name']}.{data['id']}_3.pdf"
     with open(pdf_three, 'wb') as outfile:
-        fill_pdf("root_2.pdf", outfile, data)
+        fill_pdf("root_2_page3.pdf", outfile, add_suffix(data,'_page3'))
 
-    add_mark(pdf_three, "3. CLIENTE")
+
 
     writer = PdfWriter()
 
     # Merge the overlay page onto the template page
     files = []
-    three_additional_pdf_ = [pdf_one + "_marked.pdf", pdf_two + "_marked.pdf", pdf_three + "_marked.pdf",
+    three_additional_pdf_ = [pdf_one , pdf_two, pdf_three ,
                              'additional.pdf']
     for pdf in three_additional_pdf_:
         reader = PdfReader(pdf)
@@ -99,9 +108,7 @@ def print_three_pdf(data):
         item.close()
 
     buf.seek(0)
-    os.unlink(pdf_one + "_marked.pdf")
-    os.unlink(pdf_two + "_marked.pdf")
-    os.unlink(pdf_three + "_marked.pdf")
+
     os.unlink(pdf_one)
     os.unlink(pdf_two)
     os.unlink(pdf_three)
