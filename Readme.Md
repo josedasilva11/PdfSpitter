@@ -16,9 +16,10 @@ serve. [https://www.python.org/ftp/python/3.10.6/python-3.10.6-amd64.exe](https:
 
 run `install.bat` the first time you install this on a new machine after installing python.
 
-run `server.bat` to run the server.
+
 
 run `front_end.bat` to recompile changes to the front end. You do not have to stop the server to change the front end.
+
 
 you can change translations in `/front_end/translated.json`. I suggest using something
 like https://jsonformatter.org/json-editor or any json editor to keep the formatting correct.
@@ -27,6 +28,12 @@ Please only change that file. Make sure it's valid json.
 
 Need to change the stuff after the triple print? Just swap out `/additional.pdf`
 
+
+## User accounts
+
+go to app.py and change the passwords
+
+![img_3.png](img_3.png)
 
 ## Database
 
