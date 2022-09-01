@@ -10,6 +10,7 @@ export class SearchForm {
 
 export class RentalForm {
     id: number = 0
+    store_prefix: string = ''
     is_black_listed: boolean = false
     to_be_paid: string = ''
     to_be_paid2: string = ''
@@ -46,9 +47,12 @@ export class RentalForm {
     car_rented_at: string = ''
     date_in: string = ''
     date_out: string = ''
+    obs: string=''
     time_in: string = ''
     time_out: string = ''
     form_number: string = ''
-
+    car_group: string = ''
+    car_chargd: string = ''
+    car_tarrif: string = ''
 
 }

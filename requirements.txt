@@ -6,4 +6,5 @@ python-dateutil
 gunicorn
 PyPDF2
 fpdf
+flask-login
 psycopg2-binary

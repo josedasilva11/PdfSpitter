@@ -28,7 +28,21 @@ export class Core {
 }
 
 export class API {
-    static new_form (form_data,) {
+    static login (username,password,) {
+
+    return Core.makeRequest("/api/app/login", {
+        username: username,
+        password: password,
+        });
+}
+
+static is_login () {
+
+    return Core.makeRequest("/api/app/is_login", {
+        });
+}
+
+static new_form (form_data,) {
 
     return Core.makeRequest("/api/app/new_form", {
         form_data: form_data,

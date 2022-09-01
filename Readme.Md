@@ -12,7 +12,7 @@ serve. [https://www.python.org/ftp/python/3.10.6/python-3.10.6-amd64.exe](https:
 
 ## Starting the server
 
-edit `store_id.txt` and set the store id
+ 
 
 run `install.bat` the first time you install this on a new machine after installing python.
 

@@ -55,6 +55,7 @@ class CarApplicant(db.Model, SerializerMixin):
     is_black_listed = db.Column(db.Boolean, default=False)
     to_be_paid = db.Column(db.String(100), default='')
     to_be_paid2 = db.Column(db.String(100), default='')
+    store_prefix = db.Column(db.String(100), default='')
     to_be_paid3 = db.Column(db.String(100), default='')
     client_renter_name = db.Column(db.String(100), default='')
     client_renter_name2 = db.Column(db.String(100), default='')
@@ -91,8 +92,10 @@ class CarApplicant(db.Model, SerializerMixin):
     time_in = db.Column(db.String(100), default='')
     time_out = db.Column(db.String(100), default='')
     form_number = db.Column(db.String(100), default='')
-
-
+    car_group = db.Column(db.String(100), default='')
+    car_chargd = db.Column(db.String(100), default='')
+    car_tarrif = db.Column(db.String(100), default='')
+    obs = db.Column(db.String(100), default='')
 def new_applicant():
     with db.session.begin():
         applicant = CarApplicant()

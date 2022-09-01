@@ -18,7 +18,7 @@
         <b-form-input v-model="search_form.client_renter_name2"
                       :placeholder="Translate('Client Renter Name2')"></b-form-input>
       </b-form-group>
-      <b-form-group :label="Translate('Cont nº')">
+      <b-form-group :label="Translate('Cont No')">
         <b-form-input v-model="search_form.cont_no" :placeholder="Translate('Client Renter Name2')"></b-form-input>
       </b-form-group>
     </div>
@@ -33,7 +33,7 @@
 
       </th>
       <th>
-        {{ Translate('Cont nº') }}
+        {{ Translate('Cont No') }}
       </th>
 
       </thead>
@@ -62,11 +62,12 @@ import {Component, Vue} from 'vue-property-decorator';
 import {API} from '@/api/api.js'
 import {SearchForm, RentalForm} from "@/views/rental_form";
 import {_translate} from "../../translated";
+import login_vue from "@/views/login_vue";
 
 @Component({
   components: {},
 })
-export default class SearchView extends Vue {
+export default class SearchView extends login_vue {
 
   search_form: SearchForm = new SearchForm()
   search_results: RentalForm[] = [];
@@ -74,6 +75,7 @@ export default class SearchView extends Vue {
   new_item() {
     this.$router.push('/new_item')
   }
+
 
   RowClass(row: RentalForm) {
     if (row.is_black_listed) {
