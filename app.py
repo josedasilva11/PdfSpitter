@@ -43,8 +43,8 @@ db.create_all()
 
 with db.session.begin():
     User.query.filter_by().delete()
-    db.session.add(User(user_name='manager', password='57b1a089d6a882eec1a9f4a5a'))
-    db.session.add(User(user_name='employee', password='71ff37448c6f8da9f79e4305f56bb'))
+    db.session.add(User(user_name='manager', password='123'))
+    db.session.add(User(user_name='employee', password='123'))
 
 
 @login_manager.user_loader
